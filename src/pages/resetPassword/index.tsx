@@ -40,7 +40,7 @@ export const ResetPassword = () => {
     console.log("values: ", values);
     resetPassword(values, {
       onSuccess(_) {
-        toast.success(t("pages.reset_password.success_request_message"));
+        toast.success(t("pages.reset_password.success_request_message") as string);
 
         navigate(-1);
       },
@@ -53,7 +53,7 @@ export const ResetPassword = () => {
           });
         }
 
-        toast.error(t("pages.reset_password.error_request_message"));
+        toast.error(t("pages.reset_password.error_request_message") as string);
       },
     });
   };

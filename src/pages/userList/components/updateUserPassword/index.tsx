@@ -48,12 +48,12 @@ export const UpdateUserPassword = (props: Props) => {
     }, {
       onSuccess() {
         toast.success(
-          t("components.update_user_password.success_request_message")
+          t("components.update_user_password.success_request_message") as string
         );
         onClose();
       },
       onError(error: any) {
-        toast.error(t("components.update_user_password.error_request_message"));
+        toast.error(t("components.update_user_password.error_request_message") as string);
       },
     });
   };

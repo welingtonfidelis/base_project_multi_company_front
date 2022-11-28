@@ -100,7 +100,7 @@ export const UserDetail = () => {
             toast.success(
               t("pages.user_new_edit.success_request_edit_message", {
                 username: values.name,
-              })
+              }) as string
             );
             navigate(-1);
           },
@@ -119,7 +119,7 @@ export const UserDetail = () => {
               });
             }
 
-            toast.error(t("pages.user_new_edit.error_request_edit_message"));
+            toast.error(t("pages.user_new_edit.error_request_edit_message") as string);
           },
         }
       );
@@ -157,7 +157,7 @@ export const UserDetail = () => {
           });
         }
 
-        toast.error(t("pages.user_new_edit.error_request_new_message"));
+        toast.error(t("pages.user_new_edit.error_request_new_message") as string);
       },
     });
   };

@@ -63,18 +63,10 @@ export interface GetUserByIdPayload {
 
 // Response
 export interface LoggedUser {
-  user: {
-    name: string;
-    email: string;
-    permissions: string[];
-  };
-  company: {
-    name: string;
-    name_key: string;
-    email: string;
-    phone: string;
-    image_url: string;
-  };
+  id: number;
+  name: string;
+  email: string;
+  permissions: string[];
 }
 
 export interface ListUsersResponse {

@@ -50,7 +50,7 @@ export const UpdateResetedPassword = () => {
     updateResetedPassword(payload, {
       onSuccess(_) {
         toast.success(
-          t("pages.update_reseted_password.success_request_message")
+          t("pages.update_reseted_password.success_request_message") as string
         );
 
         navigate(ROOT);
@@ -61,10 +61,10 @@ export const UpdateResetedPassword = () => {
 
         if (message === INVALID_RESET_TOKEN.message) {
           toast.error(
-            t("pages.update_reseted_password.error_request_token_message")
+            t("pages.update_reseted_password.error_request_token_message") as string
           );
         } else
-          toast.error(t("pages.update_reseted_password.error_request_message"));
+          toast.error(t("pages.update_reseted_password.error_request_message") as string);
       },
     });
   };

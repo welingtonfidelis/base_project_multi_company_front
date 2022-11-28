@@ -22,7 +22,6 @@ import { useLogin } from "../../services/requests/user";
 import { toast } from "react-toastify";
 import { responseErrorHandler } from "../../shared/handlers/responseError";
 import { HttpServerMessageEnum } from "../../shared/enum/httpServerMessage";
-import { companyStore } from "../../store/company";
 
 const { RESET_PASSWORD, DASHBOARD } = ApplicationRoutes;
 const { INVALID_USERNAME_OR_EMAIL, INVALID_PASSWORD } = HttpServerMessageEnum;
@@ -38,7 +37,6 @@ export const Login = () => {
   const validateFormFields = formValidate();
   const { login, isLoading } = useLogin();
   const { updateUser } = userStore();
-  const { updateCompany } = companyStore();
 
   const handleSubmit = async (
     values: FormProps,
@@ -47,8 +45,7 @@ export const Login = () => {
     login(values, {
       onSuccess(data) {
         if (data) {
-          updateUser(data.user);
-          updateCompany(data.company);
+          updateUser(data);
           navigate(DASHBOARD);
         }
       },
@@ -67,7 +64,7 @@ export const Login = () => {
           });
         }
 
-        toast.error(t("pages.login.error_request_message"));
+        toast.error(t("pages.login.error_request_message") as string);
       },
     });
   };

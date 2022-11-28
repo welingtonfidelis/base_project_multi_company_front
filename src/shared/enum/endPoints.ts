@@ -14,5 +14,8 @@ export const EndPoints = {
   },
   PERMISSIONS: {
     LIST: "/permissions"
+  },
+  COMPANIES: {
+    PROFILE: "/companies/profile",
   }
 }

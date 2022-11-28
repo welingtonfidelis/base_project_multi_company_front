@@ -95,7 +95,7 @@ export const Profile = (props: Props) => {
 
     updateProfile(formData as any, {
       onSuccess() {
-        toast.success(t("components.profile.success_request_message"));
+        toast.success(t("components.profile.success_request_message") as string);
         handleCloseModal();
         refetch();
       },
@@ -114,7 +114,7 @@ export const Profile = (props: Props) => {
           });
         }
 
-        toast.error(t("components.profile.error_request_message"));
+        toast.error(t("components.profile.error_request_message") as string);
       },
     });
   };

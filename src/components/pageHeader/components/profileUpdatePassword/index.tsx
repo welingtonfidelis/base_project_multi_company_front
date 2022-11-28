@@ -39,7 +39,7 @@ export const ProfileUpdatePassword = (props: Props) => {
     updatePassword(omit(values, 'repeated_new_password'), {
       onSuccess() {
         toast.success(
-          t("components.profile_change_password.success_request_message")
+          t("components.profile_change_password.success_request_message") as string
         );
         onClose();
       },
@@ -53,7 +53,7 @@ export const ProfileUpdatePassword = (props: Props) => {
         }
 
         toast.error(
-          t("components.profile_change_password.error_request_message")
+          t("components.profile_change_password.error_request_message") as string
         );
       },
     });

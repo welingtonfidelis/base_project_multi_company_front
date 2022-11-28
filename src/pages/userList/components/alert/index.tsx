@@ -32,7 +32,7 @@ export const Alert = (props: Props) => {
       { id, data: { is_blocked } },
       {
         onSuccess() {
-          toast.success(t("pages.user_list.success_request_block_message"));
+          toast.success(t("pages.user_list.success_request_block_message") as string);
           setStoreData(
             {
               is_blocked,
@@ -44,7 +44,7 @@ export const Alert = (props: Props) => {
           onCloseBlock();
         },
         onError() {
-          toast.error(t("pages.user_list.error_request_block_message"));
+          toast.error(t("pages.user_list.error_request_block_message") as string);
         },
       }
     );
@@ -58,13 +58,13 @@ export const Alert = (props: Props) => {
       { id },
       {
         onSuccess() {
-          toast.success(t("pages.user_list.success_request_delete_message"));
+          toast.success(t("pages.user_list.success_request_delete_message") as string);
           deleteStoreData([id], "id");
 
           onCloseDelete();
         },
         onError() {
-          toast.error(t("pages.user_list.error_request_delete_message"));
+          toast.error(t("pages.user_list.error_request_delete_message") as string);
         },
       }
     );

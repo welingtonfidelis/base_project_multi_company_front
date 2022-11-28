@@ -1,5 +1,5 @@
 import { useMemo, useRef } from "react";
-import { Image } from "@chakra-ui/react";
+import { Image, useDisclosure } from "@chakra-ui/react";
 import { FaTimes } from "react-icons/fa";
 
 import {
@@ -13,6 +13,8 @@ import {
 import { Props } from "./types";
 
 import logoImage from "../../assets/logo.png";
+import { companyStore } from "../../store/company";
+import { CompanyProfile } from "./components/companyProfile";
 
 export const DrawerMenu = (props: Props) => {
   const {
@@ -22,7 +24,13 @@ export const DrawerMenu = (props: Props) => {
     isMenuOpen,
     handleChangeIsMenuOpen,
   } = props;
-  
+  const { company } = companyStore();
+  const {
+    isOpen: isOpenProfile,
+    onOpen: onOpenProfile,
+    onClose: onCloseProfile,
+  } = useDisclosure();
+
   const firstRender = useRef(true);
 
   const menuContainerClassName = useMemo(() => {
@@ -48,7 +56,7 @@ export const DrawerMenu = (props: Props) => {
       </CloseMenuCotent>
 
       <LogoImageContent>
-        <Image boxSize="7.5rem" src={logoImage} />
+        <Image boxSize="7.5rem" src={company.image_url || logoImage} onClick={onOpenProfile}/>
       </LogoImageContent>
 
       <MenuContent>
@@ -62,6 +70,8 @@ export const DrawerMenu = (props: Props) => {
           </DrawerMenuItem>
         ))}
       </MenuContent>
+
+      <CompanyProfile isOpen={isOpenProfile} onClose={onCloseProfile} />
     </Container>
   );
 };

@@ -52,7 +52,7 @@ export const UserList = () => {
   const { getQueryKey, data, isLoading, error } = useGetListUsers(filters);
 
   if (error) {
-    toast.error(t("pages.user_list.error_request_delete_message"));
+    toast.error(t("pages.user_list.error_request_delete_message") as string);
   }
 
   const handleOpenAlert = (
