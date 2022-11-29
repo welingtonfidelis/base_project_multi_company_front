@@ -41,11 +41,17 @@ export const Container = styled.div`
 
 export const LogoImageContent = styled.div`
   border-bottom: 1px solid ${(props) => props.theme.colors.separator};
-  margin-bottom: .5rem;
-  padding-bottom: .5rem;
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  & img {
+    :hover {
+      cursor: pointer;
+    }
+  }
 `;
 
 export const CloseMenuCotent = styled.div`

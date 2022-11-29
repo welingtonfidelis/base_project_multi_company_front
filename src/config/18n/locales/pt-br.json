@@ -8,6 +8,12 @@
       "alert_description_logout": "Deseja realmente sair do sistema?"
     },
     "drawer_menu": {},
+    "company_profile": {
+      "page_title":  "Perfil da empresa",
+      "input_name": "Nome",
+      "input_email": "Email",
+      "input_phone": "Telefone"
+    },
     "profile": {
       "page_title": "Perfil",
       "input_email": "Email",

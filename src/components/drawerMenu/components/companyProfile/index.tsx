@@ -1,8 +1,8 @@
-import { useMemo } from "react";
+import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { Button, ModalFooter } from "@chakra-ui/react";
 
-import { AvatarContent, AvatarImage } from "./styles";
+import { AvatarContent, AvatarImage, InfoContent } from "./styles";
 import { Props } from "./types";
 
 import { Modal } from "../../../modal";
@@ -19,28 +19,16 @@ export const CompanyProfile = (props: Props) => {
   const { updateCompany } = companyStore();
   const { data, isLoading } = useGetProfile();
 
-  const initialValues = useMemo(() => {
+  useEffect(() => {
     if (data) updateCompany(data);
-
-    return {
-      id: data?.id || 0,
-      name: data?.name || "",
-      phone: data?.phone || "",
-      email: data?.email || "",
-      image_url: data?.image_url || "",
-    };
   }, [data]);
-
-  const handleCloseModal = () => {
-    onClose();
-  };
 
   return (
     <Modal
-      title={t("components.profile.page_title")}
+      title={t("components.company_profile.page_title")}
       onConfirm={() => {}}
       isOpen={isOpen}
-      onClose={handleCloseModal}
+      onClose={onClose}
       deactiveModalButtons
     >
       <Preloader isLoading={isLoading}>
@@ -48,10 +36,19 @@ export const CompanyProfile = (props: Props) => {
           <AvatarImage src={data?.image_url || logoImage} />
         </AvatarContent>
 
-        <BordedContainer>{initialValues.name}</BordedContainer>
+        <InfoContent>
+          <span>{t("components.company_profile.input_name")}</span>
+          <BordedContainer>{data?.name}</BordedContainer>
+
+          <span>{t("components.company_profile.input_email")}</span>
+          <BordedContainer>{data?.email}</BordedContainer>
+
+          <span>{t("components.company_profile.input_phone")}</span>
+          <BordedContainer>{data?.phone}</BordedContainer>
+        </InfoContent>
 
         <ModalFooter paddingEnd={0}>
-          <Button onClick={handleCloseModal} colorScheme="gray" marginEnd={"2"}>
+          <Button onClick={onClose} colorScheme="gray" marginEnd={"2"}>
             {t("generic.button_ok")}
           </Button>
         </ModalFooter>
