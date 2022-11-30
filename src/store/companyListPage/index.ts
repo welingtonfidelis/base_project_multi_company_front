@@ -1,15 +1,15 @@
 import create from "zustand";
-import { State, Action, FiltersType } from "./types";
+import { State, Action } from "./types";
 
 const initiaState = {
   filters: {
     page: 1,
     filter_by_id: "",
     filter_by_name: "",
-  }
+  },
 };
 
-export const userListPageStore = create<State & Action>((set) => ({
+export const companyListPageStore = create<State & Action>((set) => ({
   ...initiaState,
 
   updatePageNumber: (data) => {

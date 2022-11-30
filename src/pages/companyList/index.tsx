@@ -15,23 +15,22 @@ import {
 import { Pagination } from "../../components/pagination";
 import { Preloader } from "../../components/preloader";
 import { Table } from "../../components/table";
-import { useGetListUsers } from "../../services/requests/user";
 import { ApplicationRoutes } from "../../shared/enum/applicationRoutes";
 
 import { Container, EditIconContent, MainContent } from "./styles";
 import { User } from "../../domains/user";
-import { urlParams } from "../../services/util/urlParams";
 import { Alert } from "./components/alert";
 import { PageFilter } from "./components/pageFilter";
 import { toast } from "react-toastify";
-import { userListPageStore } from "../../store/userListPage";
-import { UpdateUserPassword } from "./components/updateUserPassword";
+import { companyListPageStore } from "../../store/companyListPage";
+import { useGetCompanies } from "../../services/requests/company";
+import { Company } from "../../domains/company";
 
 const { USER_EDIT } = ApplicationRoutes;
 
-export const UserList = () => {
-  const { filters, updatePageNumber } = userListPageStore();
-  const [selectedUser, setSelectedUser] = useState<User | null>(null);
+export const CompanyList = () => {
+  const { filters, updatePageNumber } = companyListPageStore();
+  const [selectedCompany, setSelectedCompany] = useState<Company | null>(null);
   const navigate = useNavigate();
   const { t } = useTranslation();
   const {
@@ -39,59 +38,17 @@ export const UserList = () => {
     onOpen: onOpenBlock,
     onClose: onCloseBlock,
   } = useDisclosure();
-  const {
-    isOpen: isOpenDelete,
-    onOpen: onOpenDelete,
-    onClose: onCloseDelete,
-  } = useDisclosure();
-  const {
-    isOpen: isOpenUpdatePassword,
-    onOpen: onOpenUpdatePassword,
-    onClose: onCloseUpdatePassword,
-  } = useDisclosure();
-  const { getQueryKey, data, isLoading, error } = useGetListUsers(filters);
+  const { getQueryKey, data, isLoading, error } = useGetCompanies(filters);
 
   if (error) {
-    toast.error(t("pages.user_list.error_request_get_list_message") as string);
+    toast.error(t("pages.company_list.error_request_get_list_message") as string);
   }
 
   const handleOpenAlert = (
-    user: User,
-    type: "block" | "delete" | "password"
+    user: Company
   ) => {
-    switch (type) {
-      case "block":
-        onOpenBlock();
-        break;
-
-      case "password":
-        onOpenUpdatePassword();
-        break;
-
-      default:
-        onOpenDelete();
-        break;
-    }
-
-    setSelectedUser(user);
-  };
-
-  const handleCloseAlert = (type: "block" | "delete" | "password") => {
-    switch (type) {
-      case "block":
-        onCloseBlock();
-        break;
-
-      case "password":
-        onCloseUpdatePassword();
-        break;
-
-      default:
-        onCloseDelete();
-        break;
-    }
-
-    setSelectedUser(null);
+    setSelectedCompany(user);
+    onOpenBlock();
   };
 
   // ===> TODO get/set filters param URL
@@ -113,16 +70,16 @@ export const UserList = () => {
   // }, [filters]);
 
   const columnHeader = useMemo(
-    () => t("pages.user_list.table_header_columns").split("/"),
+    () => t("pages.company_list.table_header_columns").split("/"),
     []
   );
   const columnData = useMemo(() => {
     if (!data) return [];
-
-    return data?.users.map((item) => [
+    return data?.companies.map((item) => [
       <Avatar name={item.name} src={item.image_url} />,
       item.name,
       item.email,
+      item.phone,
       item.is_blocked ? t("generic.button_yes") : t("generic.button_no"),
       <Menu>
         <MenuButton>
@@ -134,24 +91,12 @@ export const UserList = () => {
           <MenuItem
             onClick={() => navigate(USER_EDIT.replace(":id", String(item.id)))}
           >
-            {t("pages.user_list.table_action_edit")}
+            {t("pages.company_list.table_action_edit")}
           </MenuItem>
-          <MenuItem
-            color="yellow.500"
-            onClick={() => handleOpenAlert(item, "password")}
-          >
-            {t("pages.user_list.table_action_update_password")}
-          </MenuItem>
-          <MenuItem
-            color="yellow.500"
-            onClick={() => handleOpenAlert(item, "block")}
-          >
+          <MenuItem color="yellow.500" onClick={() => handleOpenAlert(item)}>
             {item.is_blocked
-              ? t("pages.user_list.table_action_unblock")
-              : t("pages.user_list.table_action_block")}
-          </MenuItem>
-          <MenuItem color="red" onClick={() => handleOpenAlert(item, "delete")}>
-            {t("pages.user_list.table_action_delete")}
+              ? t("pages.company_list.table_action_unblock")
+              : t("pages.company_list.table_action_block")}
           </MenuItem>
         </MenuList>
       </Menu>,
@@ -176,17 +121,9 @@ export const UserList = () => {
 
       <Alert
         isOpenBlock={isOpenBlock}
-        onCloseBlock={() => handleCloseAlert("block")}
-        isOpenDelete={isOpenDelete}
-        onCloseDelete={() => handleCloseAlert("delete")}
-        selectedUser={selectedUser}
+        onCloseBlock={onCloseBlock}
+        selectedCompany={selectedCompany}
         queryKey={getQueryKey()}
-      />
-
-      <UpdateUserPassword
-        isOpen={isOpenUpdatePassword}
-        onClose={() => handleCloseAlert("password")}
-        selectedUser={selectedUser}
       />
     </Container>
   );

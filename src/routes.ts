@@ -9,9 +9,20 @@ import { UserList } from "./pages/userList";
 import { NotFound } from "./pages/notFound";
 import { UserDetail } from "./pages/userDetail";
 import { UpdateResetedPassword } from "./pages/updateResetedPassword";
+import { CompanyList } from "./pages/companyList";
 
-const { ROOT, RESET_PASSWORD, UPDATE_RESETED_PASSWORD, DASHBOARD, USER_LIST, USER_EDIT, USER_NEW } =
-  ApplicationRoutes;
+const {
+  ROOT,
+  RESET_PASSWORD,
+  UPDATE_RESETED_PASSWORD,
+  DASHBOARD,
+  USER_LIST,
+  USER_EDIT,
+  USER_NEW,
+  COMPANY_LIST,
+  COMPANY_EDIT,
+  COMPANY_NEW,
+} = ApplicationRoutes;
 const { ADMIN, MANAGER, USER } = ApplicationPermissions;
 
 export const routes = [
@@ -70,6 +81,14 @@ export const routes = [
     layout: GuestLayout,
     isMenuOption: false,
     permissions: [ADMIN, MANAGER],
+  },
+  {
+    label: "pages.company_list.page_title",
+    path: COMPANY_LIST,
+    element: CompanyList,
+    layout: LayoutWithDrawerMenu,
+    isMenuOption: true,
+    permissions: [ADMIN],
   },
   {
     label: "not found",

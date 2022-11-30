@@ -13,9 +13,13 @@ export const EndPoints = {
     DELETE: "/users/:id",
   },
   PERMISSIONS: {
-    LIST: "/permissions"
+    LIST: "/permissions",
   },
   COMPANIES: {
     PROFILE: "/companies/profile",
-  }
-}
+    LIST: "/companies",
+    GET: "/companies/:id",
+    UPDATE: "/companies/:id",
+    CREATE: "/companies",
+  },
+};

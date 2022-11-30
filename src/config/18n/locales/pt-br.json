@@ -96,7 +96,7 @@
       "success_request_block_message": "Sucesso! Usuário atualizado.",
       "error_request_block_message": "Algo deu errado. Por favor, verifique as informações e tente novamente.",
       "success_request_delete_message": "Sucesso! Usuário excluído.",
-      "error_request_delete_message": "Algo deu errado. Por favor, verifique as informações e tente novamente."
+      "error_request_get_list_message": "Algo deu errado. Por favor, verifique as informações e tente novamente."
     },
     "user_new_edit": {
       "page_new_title": "Cadastrar Usuário",
@@ -132,6 +132,24 @@
       "success_request_message": "Sucesso! Sua senha foi recuperada.",
       "error_request_message": "Algo deu errado. Por favor, verifique as informações inseridas e tente novamente.",
       "error_request_token_message": "Algo deu errado. Parece que seu token é inválido. Tente resetar sua senha novamente."
+    },
+    "company_list": {
+      "page_title": "Empresas",
+      "table_header_columns": "/Nome/Email/Telefone/Bloqueado/Editar",
+      "table_action_edit": "Editar",
+      "table_action_block": "Bloquear",
+      "table_action_unblock": "Desbloquear",
+      "input_search_id":  "Código",
+      "input_search_name":  "Nome",
+      "button_new_company": "Nova Empresa",
+      "alert_title_block_company": "Bloquear empresa",
+      "alert_description_block_company": "Deseja realmente bloquear esta empresa ({{name}})?",
+      "alert_title_unblock_company": "Desbloquear empresa",
+      "alert_description_unblock_company": "Deseja realmente desbloquear esta empresa ({{name}})?",
+      "success_request_block_message": "Sucesso! Usuário atualizado.",
+      "error_request_block_message": "Algo deu errado. Por favor, verifique as informações e tente novamente.",
+      "success_request_delete_message": "Sucesso! Usuário excluído.",
+      "error_request_get_list_message": "Algo deu errado. Por favor, verifique as informações e tente novamente."
     }
   },
   "generic": {

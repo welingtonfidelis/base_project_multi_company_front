@@ -1,4 +1,3 @@
-import { string } from "yup";
 import { User } from "../../../domains/user";
 
 // Request
