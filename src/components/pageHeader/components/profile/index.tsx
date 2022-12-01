@@ -72,7 +72,6 @@ export const Profile = (props: Props) => {
   };
 
   const handleAddProfileImage = (files: FileList) => {
-    console.log("files: ", files);
     setLocalProfileImage(files[0]);
     setDeleteProfileImage(false);
   };
@@ -154,7 +153,6 @@ export const Profile = (props: Props) => {
                     hidden
                     accept="image/*"
                     onChange={(e) => {
-                      console.log("e: ", e);
                       handleAddProfileImage(
                         (e?.target?.files || []) as FileList
                       );

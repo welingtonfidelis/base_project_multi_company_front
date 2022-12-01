@@ -10,6 +10,12 @@ export const Container = styled.div`
 export const MainContent = styled.div`
   flex: 1;
   overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+
+  & .chakra-table__container {
+    flex: 1;
+  }
 `;
 
 export const EditIconContent = styled.div`

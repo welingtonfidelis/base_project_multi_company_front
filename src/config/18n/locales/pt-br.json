@@ -46,7 +46,7 @@
       "error_request_message": "Algo deu errado. Por favor, verifique as informações inseridas e tente novamente."
     },
     "empty_state": {
-      "message": "Sem dados para mostra aqui."
+      "message": "Sem dados para mostrar aqui."
     }
   },
   "pages": {
@@ -115,6 +115,8 @@
       "input_permissions_min_invalid": "Escolha ao menos uma permissão para este usuário",
       "input_repeated_password": "Repita a senha",
       "input_repeated_password_invalid": "Senhas diferentes",
+      "input_username_already_used": "Nome de usuário já em uso",
+      "input_email_already_used": "Email já em uso",
       "success_request_edit_message": "Sucesso! Usuário '{{username}}' atualizado",
       "error_request_edit_message": "Algo deu errado. Por favor, verifique as informações e tente novamente.",
       "error_request_new_message": "Algo deu errado. Por favor, verifique as informações e tente novamente.",
@@ -150,6 +152,28 @@
       "error_request_block_message": "Algo deu errado. Por favor, verifique as informações e tente novamente.",
       "success_request_delete_message": "Sucesso! Usuário excluído.",
       "error_request_get_list_message": "Algo deu errado. Por favor, verifique as informações e tente novamente."
+    },
+    "company_new_edit": {
+      "page_new_title": "Cadastrar Empresa",
+      "page_edit_title": "Editar Empresa",
+      "input_id": "Código",
+      "input_is_blocked": "Bloqueado",
+      "input_name": "Nome",
+      "input_name_invalid": "Nome inválido",
+      "input_phone": "Telefone",
+      "input_phone_invalid": "Telefone inválido",
+      "input_email": "Email",
+      "input_email_format_invalid": "Formato de email inválido",
+      "input_name_already_used": "Nome de empresa já em uso",
+      "input_email_already_used": "Email já em uso",
+      "input_username": "Usuário",
+      "input_password": "Senha",
+      "input_is_blocked_own_company": "Você não pode bloquear sua própria empresa",
+      "success_request_edit_message": "Sucesso! Usuário '{{username}}' atualizado",
+      "error_request_edit_message": "Algo deu errado. Por favor, verifique as informações e tente novamente.",
+      "error_request_new_message": "Algo deu errado. Por favor, verifique as informações e tente novamente.",
+      "alert_title_new_user": "Usuário criado",
+      "alert_description_new_user": "O novo usuário pode acessar o sistema utilizando os dados abaixo"
     }
   },
   "generic": {

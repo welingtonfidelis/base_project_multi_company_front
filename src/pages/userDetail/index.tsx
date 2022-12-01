@@ -109,13 +109,13 @@ export const UserDetail = () => {
 
             if (message === USERNAME_ALREADY_USED.message) {
               actions.setErrors({
-                username: t("components.profile.input_username_already_used"),
+                username: t("pages.user_new_edit.input_username_already_used"),
               });
             }
 
             if (message === EMAIL_ALREADY_USED.message) {
               actions.setErrors({
-                email: t("components.profile.input_email_already_used"),
+                email: t("pages.user_new_edit.input_email_already_used"),
               });
             }
 

@@ -26,7 +26,7 @@ import { companyListPageStore } from "../../store/companyListPage";
 import { useGetCompanies } from "../../services/requests/company";
 import { Company } from "../../domains/company";
 
-const { USER_EDIT } = ApplicationRoutes;
+const { COMPANY_EDIT } = ApplicationRoutes;
 
 export const CompanyList = () => {
   const { filters, updatePageNumber } = companyListPageStore();
@@ -89,7 +89,7 @@ export const CompanyList = () => {
         </MenuButton>
         <MenuList>
           <MenuItem
-            onClick={() => navigate(USER_EDIT.replace(":id", String(item.id)))}
+            onClick={() => navigate(COMPANY_EDIT.replace(":id", String(item.id)))}
           >
             {t("pages.company_list.table_action_edit")}
           </MenuItem>

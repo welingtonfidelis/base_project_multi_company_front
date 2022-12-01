@@ -9,7 +9,7 @@ export const light = {
 
     separator:"#e2e8f0",
 
-    error: "#ec1111",
+    error: "#E53E3E",
     success: "#0fc000",
     warning: "#e9ee09",
   },

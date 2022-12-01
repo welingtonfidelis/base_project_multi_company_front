@@ -10,6 +10,7 @@ import { NotFound } from "./pages/notFound";
 import { UserDetail } from "./pages/userDetail";
 import { UpdateResetedPassword } from "./pages/updateResetedPassword";
 import { CompanyList } from "./pages/companyList";
+import { CompanyDetail } from "./pages/companyDetail";
 
 const {
   ROOT,
@@ -67,7 +68,7 @@ export const routes = [
     permissions: [ADMIN, MANAGER],
   },
   {
-    label: "pages.user.page_new_title",
+    label: "pages.user_new_edit.page_new_title",
     path: USER_NEW,
     element: UserDetail,
     layout: GuestLayout,
@@ -75,7 +76,7 @@ export const routes = [
     permissions: [ADMIN, MANAGER],
   },
   {
-    label: "pages.user.page_new_title",
+    label: "pages.user_new_edit.page_edit_title",
     path: USER_EDIT,
     element: UserDetail,
     layout: GuestLayout,
@@ -88,6 +89,22 @@ export const routes = [
     element: CompanyList,
     layout: LayoutWithDrawerMenu,
     isMenuOption: true,
+    permissions: [ADMIN],
+  },
+  {
+    label: "pages.company_new_edit.page_new_title",
+    path: COMPANY_NEW,
+    element: CompanyDetail,
+    layout: GuestLayout,
+    isMenuOption: false,
+    permissions: [ADMIN],
+  },
+  {
+    label: "pages.company_new_edit.page_edit_title",
+    path: COMPANY_EDIT,
+    element: CompanyDetail,
+    layout: GuestLayout,
+    isMenuOption: false,
     permissions: [ADMIN],
   },
   {
