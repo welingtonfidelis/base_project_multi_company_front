@@ -174,6 +174,25 @@
       "error_request_new_message": "Algo deu errado. Por favor, verifique as informações e tente novamente.",
       "alert_title_new_user": "Usuário criado",
       "alert_description_new_user": "O novo usuário pode acessar o sistema utilizando os dados abaixo"
+    },
+    "company_user_list": {
+      "page_title": "Usuários por Empresa",
+      "table_header_columns": "/Nome/Email/Empresa/Bloqueado/Editar",
+      "table_action_block": "Bloquear",
+      "table_action_unblock": "Desbloquear",
+      "table_action_delete": "Excluir",
+      "table_action_update_password": "Alterar senha",
+      "input_search_user_id":  "Código usuário",
+      "input_search_user_name":  "Nome usuário",
+      "input_search_company_id":  "Código empresa",
+      "input_search_company_name":  "Nome empresa",
+      "alert_title_block_user": "Bloquear usuário",
+      "alert_description_block_user": "Deseja realmente bloquear este usuário ({{name}})?",
+      "alert_title_unblock_user": "Desbloquear usuário",
+      "alert_description_unblock_user": "Deseja realmente desbloquear este usuário ({{name}})?",
+      "success_request_block_message": "Sucesso! Usuário atualizado.",
+      "error_request_block_message": "Algo deu errado. Por favor, verifique as informações e tente novamente.",
+      "error_request_get_list_message": "Algo deu errado. Por favor, verifique as informações e tente novamente."
     }
   },
   "generic": {

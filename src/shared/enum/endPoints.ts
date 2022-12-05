@@ -21,5 +21,7 @@ export const EndPoints = {
     GET: "/companies/:id",
     UPDATE: "/companies/:id",
     CREATE: "/companies",
+    USERS_LIST: "/companies/users",
+    USER_UPDATE: "/companies/users/:id",
   },
 };

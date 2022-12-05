@@ -8,5 +8,6 @@ export enum ApplicationRoutes {
   USER_NEW = "/user",
   COMPANY_LIST = "/companies",
   COMPANY_EDIT = "/company/:id",
-  COMPANY_NEW = "/company"
+  COMPANY_NEW = "/company",
+  COMPANY_USERS_LIST = "/companies/users",
 }

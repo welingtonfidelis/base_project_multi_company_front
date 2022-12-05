@@ -1,10 +1,10 @@
 import { useMutation, useQuery } from "react-query";
 import { EndPoints } from "../../../shared/enum/endPoints";
 
-import { createCompany, getCompanies, getCompanyById, getProfile, updateCompany } from "./apiRequests";
-import { GetCompanyByIdPayload, GetCopmaniesPayload } from "./types";
+import { createCompany, getCompanies, getCompanyById, getCompanyUsers, getProfile, updateCompany, updateCompanyUser } from "./apiRequests";
+import { GetCompanyByIdPayload, GetCopmaniesPayload, GetCopmanyUsersPayload } from "./types";
 
-const { PROFILE, GET, LIST } = EndPoints.COMPANIES;
+const { PROFILE, GET, LIST, USERS_LIST } = EndPoints.COMPANIES;
 
 // ===== MUTATES ===== //
 export const useCreateCompany = () => {
@@ -17,6 +17,12 @@ export const useUpdateCompany = () => {
   const { mutate, isLoading } = useMutation(updateCompany);
 
   return { updateCompany: mutate, isLoading };
+};
+
+export const useUpdateCompanyUser = () => {
+  const { mutate, isLoading } = useMutation(updateCompanyUser);
+
+  return { updateCompanyUser: mutate, isLoading };
 };
 
 // ===== QUERIES ===== //
@@ -52,4 +58,19 @@ export const useGetCompanyById = (params: GetCompanyByIdPayload) => {
   );
 
   return { getQueryKey, refetch, data, isLoading };
+};
+
+export const useGetCompanyUsers = (params: GetCopmanyUsersPayload) => {
+  if (!params.filter_by_user_id) delete params.filter_by_user_id;
+  if (!params.filter_by_user_name) delete params.filter_by_user_name;
+  if (!params.filter_by_company_id) delete params.filter_by_company_id;
+  if (!params.filter_by_company_name) delete params.filter_by_company_name;
+
+  const getQueryKey = () => [USERS_LIST, params];
+
+  const { data, refetch, isLoading, error } = useQuery(getQueryKey(), () =>
+    getCompanyUsers(params)
+  );
+
+  return { getQueryKey, refetch, data, isLoading, error };
 };

@@ -11,6 +11,7 @@ import { UserDetail } from "./pages/userDetail";
 import { UpdateResetedPassword } from "./pages/updateResetedPassword";
 import { CompanyList } from "./pages/companyList";
 import { CompanyDetail } from "./pages/companyDetail";
+import { CompanyUserList } from "./pages/companyUserList";
 
 const {
   ROOT,
@@ -23,6 +24,7 @@ const {
   COMPANY_LIST,
   COMPANY_EDIT,
   COMPANY_NEW,
+  COMPANY_USERS_LIST,
 } = ApplicationRoutes;
 const { ADMIN, MANAGER, USER } = ApplicationPermissions;
 
@@ -105,6 +107,14 @@ export const routes = [
     element: CompanyDetail,
     layout: GuestLayout,
     isMenuOption: false,
+    permissions: [ADMIN],
+  },
+  {
+    label: "pages.company_user_list.page_title",
+    path: COMPANY_USERS_LIST,
+    element: CompanyUserList,
+    layout: LayoutWithDrawerMenu,
+    isMenuOption: true,
     permissions: [ADMIN],
   },
   {
