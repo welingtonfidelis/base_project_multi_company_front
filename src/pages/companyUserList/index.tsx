@@ -1,6 +1,5 @@
 import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
 import { BsGearFill } from "react-icons/bs";
 import {
   Avatar,
@@ -15,36 +14,24 @@ import {
 import { Pagination } from "../../components/pagination";
 import { Preloader } from "../../components/preloader";
 import { Table } from "../../components/table";
-import { useGetListUsers } from "../../services/requests/user";
-import { ApplicationRoutes } from "../../shared/enum/applicationRoutes";
 
 import { Container, EditIconContent, MainContent } from "./styles";
 import { User } from "../../domains/user";
-import { urlParams } from "../../services/util/urlParams";
 import { Alert } from "./components/alert";
 import { PageFilter } from "./components/pageFilter";
 import { toast } from "react-toastify";
-import { userListPageStore } from "../../store/userListPage";
 import { UpdateUserPassword } from "./components/updateUserPassword";
 import { companyUserListPageStore } from "../../store/companyUserListPage";
 import { useGetCompanyUsers } from "../../services/requests/company";
 
-const { USER_EDIT } = ApplicationRoutes;
-
 export const CompanyUserList = () => {
   const { filters, updatePageNumber } = companyUserListPageStore();
   const [selectedUser, setSelectedUser] = useState<User | null>(null);
-  const navigate = useNavigate();
   const { t } = useTranslation();
   const {
     isOpen: isOpenBlock,
     onOpen: onOpenBlock,
     onClose: onCloseBlock,
-  } = useDisclosure();
-  const {
-    isOpen: isOpenDelete,
-    onOpen: onOpenDelete,
-    onClose: onCloseDelete,
   } = useDisclosure();
   const {
     isOpen: isOpenUpdatePassword,
@@ -54,42 +41,33 @@ export const CompanyUserList = () => {
   const { getQueryKey, data, isLoading, error } = useGetCompanyUsers(filters);
 
   if (error) {
-    toast.error(t("pages.company_user_list.error_request_get_list_message") as string);
+    toast.error(
+      t("pages.company_user_list.error_request_get_list_message") as string
+    );
   }
 
-  const handleOpenAlert = (
-    user: User,
-    type: "block" | "delete" | "password"
-  ) => {
+  const handleOpenAlert = (user: User, type: "block" | "password") => {
     switch (type) {
       case "block":
         onOpenBlock();
         break;
 
-      case "password":
-        onOpenUpdatePassword();
-        break;
-
       default:
-        onOpenDelete();
+        onOpenUpdatePassword();
         break;
     }
 
     setSelectedUser(user);
   };
 
-  const handleCloseAlert = (type: "block" | "delete" | "password") => {
+  const handleCloseAlert = (type: "block" | "password") => {
     switch (type) {
       case "block":
         onCloseBlock();
         break;
 
-      case "password":
-        onCloseUpdatePassword();
-        break;
-
       default:
-        onCloseDelete();
+        onCloseUpdatePassword();
         break;
     }
 
@@ -172,8 +150,6 @@ export const CompanyUserList = () => {
       <Alert
         isOpenBlock={isOpenBlock}
         onCloseBlock={() => handleCloseAlert("block")}
-        isOpenDelete={isOpenDelete}
-        onCloseDelete={() => handleCloseAlert("delete")}
         selectedUser={selectedUser}
         queryKey={getQueryKey()}
       />

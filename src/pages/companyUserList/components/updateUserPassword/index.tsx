@@ -1,6 +1,5 @@
 import { useTranslation } from "react-i18next";
 import { Formik, Form, Field, FormikHelpers } from "formik";
-import omit from "lodash/omit";
 import {
   Button,
   FormControl,
@@ -12,18 +11,10 @@ import {
 
 import { FormProps, Props } from "./types";
 import { formValidate } from "./helper/formValidate";
-import {
-  useUpdatePassword,
-  useUpdateUser,
-} from "../../../../services/requests/user";
 import { toast } from "react-toastify";
-import { responseErrorHandler } from "../../../../shared/handlers/responseError";
 import { HttpServerMessageEnum } from "../../../../shared/enum/httpServerMessage";
 import { Modal } from "../../../../components/modal";
-import { updateUser } from "../../../../services/requests/user/apiRequests";
-import { UpdateUserPayload } from "../../../../services/requests/user/types";
-
-const { INVALID_OLD_PASSWORD } = HttpServerMessageEnum;
+import { useUpdateCompanyUser } from "../../../../services/requests/company";
 
 const initialFormValues = {
   password: "",
@@ -33,7 +24,7 @@ const initialFormValues = {
 export const UpdateUserPassword = (props: Props) => {
   const { isOpen, onClose, selectedUser } = props;
   const { t } = useTranslation();
-  const { updateUser, isLoading } = useUpdateUser();
+  const { updateCompanyUser, isLoading } = useUpdateCompanyUser();
   const validateFormFields = formValidate();
 
   const handleSubmit = async (
@@ -41,26 +32,35 @@ export const UpdateUserPassword = (props: Props) => {
     actions: FormikHelpers<FormProps>
   ) => {
     if (!selectedUser) return;
-        
-    updateUser({
-      id: Number(selectedUser.id),
-      data: { password: values.password }
-    }, {
-      onSuccess() {
-        toast.success(
-          t("components.update_user_password.success_request_message") as string
-        );
-        onClose();
+
+    updateCompanyUser(
+      {
+        id: Number(selectedUser.id),
+        data: { password: values.password },
       },
-      onError(error: any) {
-        toast.error(t("components.update_user_password.error_request_message") as string);
-      },
-    });
+      {
+        onSuccess() {
+          toast.success(
+            t(
+              "components.update_company_user_password.success_request_message"
+            ) as string
+          );
+          onClose();
+        },
+        onError(error: any) {
+          toast.error(
+            t(
+              "components.update_company_user_password.error_request_message"
+            ) as string
+          );
+        },
+      }
+    );
   };
 
   return (
     <Modal
-      title={t("components.update_user_password.page_title")}
+      title={t("components.update_company_user_password.page_title")}
       onConfirm={() => {}}
       isOpen={isOpen}
       onClose={onClose}
@@ -79,13 +79,15 @@ export const UpdateUserPassword = (props: Props) => {
               {({ field }: any) => (
                 <FormControl isInvalid={!!errors.password && touched.password}>
                   <FormLabel mt="2" mb="0.2">
-                    {t("components.update_user_password.input_password")}
+                    {t(
+                      "components.update_company_user_password.input_password"
+                    )}
                   </FormLabel>
                   <Input
                     {...field}
                     type="password"
                     placeholder={t(
-                      "components.update_user_password.input_password"
+                      "components.update_company_user_password.input_password"
                     )}
                   />
                   <FormErrorMessage>{errors.password}</FormErrorMessage>
@@ -102,14 +104,14 @@ export const UpdateUserPassword = (props: Props) => {
                 >
                   <FormLabel mt="2" mb="0.2">
                     {t(
-                      "components.update_user_password.input_repeated_password"
+                      "components.update_company_user_password.input_repeated_password"
                     )}
                   </FormLabel>
                   <Input
                     {...field}
                     type="password"
                     placeholder={t(
-                      "components.update_user_password.input_repeated_password"
+                      "components.update_company_user_password.input_repeated_password"
                     )}
                   />
                   <FormErrorMessage>

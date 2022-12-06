@@ -37,7 +37,7 @@ export const updateCompanyUser = async (payload: UpdateCompanyUserPayload) => {
   const { id, data } = payload;
 
   const { data: response } = await RestRequestService.patch<{}>(
-    UPDATE.replace(":id", String(id)),
+    USER_UPDATE.replace(":id", String(id)),
     data
   );
   return response;

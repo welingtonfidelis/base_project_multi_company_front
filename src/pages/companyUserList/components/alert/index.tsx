@@ -1,11 +1,9 @@
 import { useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
+
 import { AlertConfirm } from "../../../../components/alertConfirm";
-import {
-  useDeleteUser,
-  useUpdateUser,
-} from "../../../../services/requests/user";
+import { useUpdateCompanyUser } from "../../../../services/requests/company";
 import { useQueryData } from "../../../../shared/hooks/useQueryData";
 import { Props } from "./types";
 
@@ -15,24 +13,21 @@ export const Alert = (props: Props) => {
     queryKey,
     isOpenBlock,
     onCloseBlock,
-    isOpenDelete,
-    onCloseDelete,
   } = props;
   const { t } = useTranslation();
-  const { updateUser, isLoading: isLoadingUpdateUser } = useUpdateUser();
-  const { deleteUser, isLoading: isLoadingDeleteUser } = useDeleteUser();
-  const { setStoreData, deleteStoreData } = useQueryData(queryKey, "users");
+  const { updateCompanyUser, isLoading: isLoadingUpdateUser } = useUpdateCompanyUser();
+  const { setStoreData } = useQueryData(queryKey, "users");
 
   const handleBlockUser = useCallback(() => {
     if (!selectedUser) return;
 
     const { id } = selectedUser;
     const is_blocked = !selectedUser.is_blocked;
-    updateUser(
+    updateCompanyUser(
       { id, data: { is_blocked } },
       {
         onSuccess() {
-          toast.success(t("pages.user_list.success_request_block_message") as string);
+          toast.success(t("pages.company_user_list.success_request_block_message") as string);
           setStoreData(
             {
               is_blocked,
@@ -44,27 +39,7 @@ export const Alert = (props: Props) => {
           onCloseBlock();
         },
         onError() {
-          toast.error(t("pages.user_list.error_request_block_message") as string);
-        },
-      }
-    );
-  }, [selectedUser]);
-
-  const handleDeleteUser = useCallback(() => {
-    if (!selectedUser) return;
-
-    const { id } = selectedUser;
-    deleteUser(
-      { id },
-      {
-        onSuccess() {
-          toast.success(t("pages.user_list.success_request_delete_message") as string);
-          deleteStoreData([id], "id");
-
-          onCloseDelete();
-        },
-        onError() {
-          toast.error(t("pages.user_list.error_request_delete_message") as string);
+          toast.error(t("pages.company_user_list.error_request_block_message") as string);
         },
       }
     );
@@ -75,15 +50,15 @@ export const Alert = (props: Props) => {
       <AlertConfirm
         title={
           selectedUser?.is_blocked
-            ? t("pages.user_list.alert_title_unblock_user")
-            : t("pages.user_list.alert_title_block_user")
+            ? t("pages.company_user_list.alert_title_unblock_user")
+            : t("pages.company_user_list.alert_title_block_user")
         }
         description={
           selectedUser?.is_blocked
-            ? t("pages.user_list.alert_description_unblock_user", {
+            ? t("pages.company_user_list.alert_description_unblock_user", {
                 name: selectedUser?.name,
               })
-            : t("pages.user_list.alert_description_block_user", {
+            : t("pages.company_user_list.alert_description_block_user", {
                 name: selectedUser?.name,
               })
         }
@@ -91,17 +66,6 @@ export const Alert = (props: Props) => {
         onClose={onCloseBlock}
         onConfirm={handleBlockUser}
         isLoading={isLoadingUpdateUser}
-      />
-
-      <AlertConfirm
-        title={t("pages.user_list.alert_title_delete_user")}
-        description={t("pages.user_list.alert_description_delete_user", {
-          name: selectedUser?.name,
-        })}
-        isOpen={isOpenDelete}
-        onClose={onCloseDelete}
-        onConfirm={handleDeleteUser}
-        isLoading={isLoadingDeleteUser}
       />
     </>
   );

@@ -6,7 +6,7 @@ export const formValidate = () => {
     password: Yup.string()
       .min(
         3,
-        i18n.t("components.update_user_password.input_password_invalid_length")
+        i18n.t("components.update_company_user_password.input_password_invalid_length")
       )
       .required(i18n.t("generic.required_input_value")),
     repeated_password: Yup.string()
@@ -16,7 +16,7 @@ export const formValidate = () => {
         then: Yup.string().oneOf(
           [Yup.ref("password")],
           i18n.t(
-            "components.update_user_password.input_repeated_password_invalid"
+            "components.update_company_user_password.input_repeated_password_invalid"
           )
         ),
       }),

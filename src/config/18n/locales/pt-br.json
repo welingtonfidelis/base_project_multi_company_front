@@ -45,6 +45,15 @@
       "success_request_message": "Sucesso! A senha foi atualizada.",
       "error_request_message": "Algo deu errado. Por favor, verifique as informações inseridas e tente novamente."
     },
+    "update_company_user_password": {
+      "page_title": "Alterar senha de usuário",
+      "input_password": "Nova senha",
+      "input_password_invalid_length": "Use senha com no mínimo 3 caracteres",
+      "input_repeated_password": "Repita a nova senha",
+      "input_repeated_password_invalid": "Senhas diferentes",
+      "success_request_message": "Sucesso! A senha foi atualizada.",
+      "error_request_message": "Algo deu errado. Por favor, verifique as informações inseridas e tente novamente."
+    },
     "empty_state": {
       "message": "Sem dados para mostrar aqui."
     }
