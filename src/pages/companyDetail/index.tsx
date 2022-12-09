@@ -22,12 +22,6 @@ import {
   useGetCompanyById,
   useUpdateCompany,
 } from "../../services/requests/company";
-import { useGetListPermissions } from "../../services/requests/permission";
-import {
-  useCreateUser,
-  useGetUserById,
-  useUpdateUser,
-} from "../../services/requests/user";
 import { HttpServerMessageEnum } from "../../shared/enum/httpServerMessage";
 import { responseErrorHandler } from "../../shared/handlers/responseError";
 import { BordedContainer, InputTextError } from "../../shared/styles/input";
@@ -57,8 +51,6 @@ export const CompanyDetail = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
   const { data, isLoading } = useGetCompanyById({ id: Number(id) });
-  const { data: dataPermissions, isLoading: isLoadingGetPermissions } =
-    useGetListPermissions();
   const { updateCompany, isLoading: isLoadingUpdateUser } = useUpdateCompany();
   const { createCompany, isLoading: isLoadingCreateUser } = useCreateCompany();
   const [newUserData, setNewUserData] = useState({
@@ -139,7 +131,7 @@ export const CompanyDetail = () => {
               });
             }
 
-            if (message === CAN_NOT_BLOCK_YOURSELF_COMPANY.message) {              
+            if (message === CAN_NOT_BLOCK_YOURSELF_COMPANY.message) {
               actions.setErrors({
                 is_blocked: t(
                   "pages.company_new_edit.input_is_blocked_own_company"
@@ -181,7 +173,9 @@ export const CompanyDetail = () => {
           });
         }
 
-        toast.error(t("pages.company_new_edit.error_request_new_message") as string);
+        toast.error(
+          t("pages.company_new_edit.error_request_new_message") as string
+        );
       },
     });
   };
@@ -266,7 +260,9 @@ export const CompanyDetail = () => {
                         <FormLabel mt="2" mb="0.2">
                           {t("pages.company_new_edit.input_is_blocked")}
                         </FormLabel>
-                        <BordedContainer inputError={Boolean(errors.is_blocked)}>
+                        <BordedContainer
+                          inputError={Boolean(errors.is_blocked)}
+                        >
                           <Switch {...field} isChecked={field.value} />
                         </BordedContainer>
                         <InputTextError>{errors.is_blocked}</InputTextError>
@@ -297,7 +293,8 @@ export const CompanyDetail = () => {
                         </FormLabel>
                         <Input
                           {...field}
-                          as={InputMask} mask="(99) 99999-9999"
+                          as={InputMask}
+                          mask="(99) 99999-9999"
                           placeholder={t("pages.company_new_edit.input_phone")}
                         />
                         <FormErrorMessage>{errors.phone}</FormErrorMessage>
