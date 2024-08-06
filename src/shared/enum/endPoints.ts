@@ -24,4 +24,7 @@ export const EndPoints = {
     USERS_LIST: "/companies/users",
     USER_UPDATE: "/companies/users/:id",
   },
+  AUTH_CHECK: {
+    CHECK: '/auth-check'
+  },
 };
