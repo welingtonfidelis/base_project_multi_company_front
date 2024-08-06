@@ -9,8 +9,8 @@ import { AppRouter } from "./AppRouter";
 import { userStore } from "./store/user";
 import i18n from "./config/18n";
 import { Preloader } from "./components/preloader";
-import { worker } from "./services/mocks/requests/browser";
-import { config } from "./config";
+// import { worker } from "./services/mocks/requests/browser";
+// import { config } from "./config";
 
 import { GlobalStyles } from "./global.styles";
 import { light } from "./config/styles/styled-component-theme";
@@ -18,6 +18,7 @@ import { theme } from "./config/styles/chackra-ui-theme";
 import "react-toastify/dist/ReactToastify.css";
 import { getProfile } from "./services/requests/user/apiRequests";
 import { ApplicationRoutes } from "./shared/enum/applicationRoutes";
+import { navigateToRoot } from "./services/util/navigate";
 
 const { ROOT } = ApplicationRoutes;
 
@@ -26,7 +27,6 @@ export const App = () => {
 
   const queryClient = new QueryClient();
   const { updateUser } = userStore();
-  const navigateToRoot = () => window.history.replaceState(null, "", ROOT);
 
   const getUserProfile = async () => {
     try {
@@ -44,14 +44,14 @@ export const App = () => {
   };
 
   useLayoutEffect(() => {
-    if (config.IS_MOCK_ENABLE) {
-      worker.start({
-        onUnhandledRequest(req: any) {
-          // For debugger MSW mock handlers error
-          console.warn("Found an unhandled request on MSW", req);
-        },
-      });
-    }
+    // if (config.IS_MOCK_ENABLE) {
+    //   worker.start({
+    //     onUnhandledRequest(req: any) {
+    //       // For debugger MSW mock handlers error
+    //       console.warn("Found an unhandled request on MSW", req);
+    //     },
+    //   });
+    // }
 
     getUserProfile();
   }, []);
